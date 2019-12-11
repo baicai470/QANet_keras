@@ -37,7 +37,7 @@ def normalize_text(text):
 def load_vocab(vocab_file, size=int(2.2e6), vec_size=300):
     """Loads a vocabulary file into a dictionary."""
     vocab = collections.OrderedDict()
-    with open(vocab_file, "r") as reader:
+    with open(vocab_file, "r", encoding='utf-8') as reader:
         for line in tqdm(reader, total=size):
             array = line.split()
             word = "".join(array[0:-vec_size])
@@ -87,7 +87,7 @@ class FullTokenizer(object):
         self.vocab['--OOV--'] = 1
         word_embedding = np.zeros((len(word_count) + 2, vec_size))
         index = 2
-        with open(vocab_file, "r") as reader:
+        with open(vocab_file, "r", encoding='utf-8') as reader:
             for line in tqdm(reader, total=size):
                 array = line.split()
                 word = "".join(array[0:-vec_size])
